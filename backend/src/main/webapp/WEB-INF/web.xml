@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 							http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-		version="2.5"
-		xmlns="http://java.sun.com/xml/ns/javaee">
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
 
 	<display-name>backend</display-name>
 
 	<!-- ============================================================== -->
-	<!-- UI5 resource servlet used to handle application resources      -->
+	<!-- UI5 resource servlet used to handle application resources -->
 	<!-- ============================================================== -->
 
 	<servlet>
@@ -33,9 +32,28 @@
 	</context-param>
 	<!-- END: DEV MODE -->
 
+	<servlet>
+		<servlet-name>CXFNonSpringJaxrsServlet</servlet-name>
+		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+		<init-param>
+			<param-name>jaxrs.serviceClasses</param-name>
+			<param-value>de.mannheim.uni.apdtld.teamc.api.DummyService</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jaxrs.providers</param-name>
+			<param-value>de.mannheim.uni.apdtld.teamc.GsonJsonProvider</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CXFNonSpringJaxrsServlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+
 
 	<!-- ============================================================== -->
-	<!-- Cache Control Filter to prevent caching of any resource        -->
+	<!-- Cache Control Filter to prevent caching of any resource -->
 	<!-- ============================================================== -->
 
 	<filter>
@@ -66,7 +84,7 @@
 
 
 	<!-- ============================================================== -->
-	<!-- UI5 proxy servlet                                              -->
+	<!-- UI5 proxy servlet -->
 	<!-- ============================================================== -->
 
 	<servlet>
@@ -80,7 +98,7 @@
 
 
 	<!-- ============================================================== -->
-	<!-- Welcome file list                                              -->
+	<!-- Welcome file list -->
 	<!-- ============================================================== -->
 
 	<welcome-file-list>
