@@ -27,6 +27,26 @@ public class Service {
 		MALE, FEMALE
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public long getDuration() {
+		return duration;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
