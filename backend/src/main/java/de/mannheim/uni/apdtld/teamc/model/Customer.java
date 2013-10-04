@@ -1,23 +1,10 @@
 package de.mannheim.uni.apdtld.teamc.model;
 
-public class Customer {
-
-	private int id;
-
-	private String name;
+public class Customer extends Person {
 
 	public Customer(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
+		super(id, name);
+		// TODO Auto-generated constructor stub
 	}
 
 }
