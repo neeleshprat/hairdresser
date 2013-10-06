@@ -52,11 +52,26 @@ sap.ui.controller("backend.CustAppCreation", {
 	// Saves the Appointment
 	onSubmit : function(oControlEvent){
 		
-		alert("Called Submit");
-		
 		var strName =  this.model.getProperty("/custName");
 		
+		alert(strName);
+		
+		var strCust = this.model.getJSON();
+		
+		alert(strCust);
+		
+		
+		//update web.xml and add Cusomter Service to the service classes
+		/*
+		jQuery.ajax({
+			url: "backend/customer/entries",
+			data: this.model.getJSON(),
+			type: "POST",
+			contentType: "application/json"
+			});
+		
 		alert(strName);	
+		*/
 	}
 
 });
