@@ -10,16 +10,22 @@ sap.ui.controller("backend.CustAppCreation", {
 		//a JSON model that has key value pairs to bind it the elements of the View
 		this.model  = new sap.ui.model.json.JSONModel(
 				{
-					custName : "",
-					custService : "Hair Cut",
-					custGender : "Male",
-					custBarber : "Lena",
-					custDesc : "",
-					custDateTime : ""					
+					"customer" : {
+						"name" : "Neel"
+					},
+					"service" : {
+						"title" : "Hair Cut",
+						"description" : "",
+						"duration" : 3600,
+						"gender" : "Male"
+					},		
+					
+					"start" : new Date(),
+					"end" : new Date()					
 				});
 		
 		//Set the model to the the View
-		this.getView().setModel(this.model, "uiCustAppCreation");
+		this.getView().setModel(this.model);
 
 	},
 
@@ -52,26 +58,59 @@ sap.ui.controller("backend.CustAppCreation", {
 	// Saves the Appointment
 	onSubmit : function(oControlEvent){
 		
-		var strName =  this.model.getProperty("/custName");
+//		this.model.setProperty("/start") = this.model.getProperty("/start").getTime();
+				
+		var dt = this.model.getProperty("/start").getTime();
 		
-		alert(strName);
+		alert(dt);
 		
-		var strCust = this.model.getJSON();
+		//Model For the Unix time stamp
 		
-		alert(strCust);
+		var oModel  = new sap.ui.model.json.JSONModel(
+				{
+					"customer" : {
+						"name" : "Neel"
+					},
+					"service" : {
+						"title" : "Hair Cut",
+						"description" : "",
+						"duration" : 3600,
+						"gender" : "Male"
+					},		
+					
+					"start" : new Number(),
+					"end" : new Number()					
+				});
+		
+		oModel.setProperty("/customer/name", this.model.getProperty("/customer/name"));
+		oModel.setProperty("/service/title", this.model.getProperty("/service/title"));
+		oModel.setProperty("/service/description", this.model.getProperty("/service/description"));
+		oModel.setProperty("/service/duration", this.model.getProperty("/service/duration"));
+		oModel.setProperty("/service/gender", this.model.getProperty("/service/gender"));
+		oModel.setProperty("/start", this.model.getProperty("/start").getTime());
+		oModel.setProperty("/end", this.model.getProperty("/start").getTime()+this.model.getProperty("/service/duration"));
+		
+		alert("fine");
+				
+		alert(oModel.getProperty("/start"));
+		alert(oModel.getProperty("/end"));
+		alert(oModel.getJSON());
+		
 		
 		
 		//update web.xml and add Cusomter Service to the service classes
-		/*
+		
+
 		jQuery.ajax({
 			url: "backend/customer/entries",
-			data: this.model.getJSON(),
+			data: oModel.getJSON(),
 			type: "POST",
 			contentType: "application/json"
-			});
+			});	
 		
-		alert(strName);	
-		*/
+		alert("submit done");
 	}
+	
+	
 
 });

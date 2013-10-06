@@ -45,7 +45,7 @@ sap.ui.jsview("backend.CustAppCreation", {
 	
 						type : sap.m.InputType.Text,
 						placeholder : 'Enter Name...',
-						value: "{uiCustAppCreation>/custName}"
+						value: "{/customer/name}"
 					}),
 					
 					// Service Label
@@ -58,7 +58,7 @@ sap.ui.jsview("backend.CustAppCreation", {
 	
 						type : sap.m.InputType.Text,
 						placeholder : 'Enter Service...',
-						value: "{uiCustAppCreation>/custService}"
+						value: "{/service/title}"
 					}),
 					
 					// Gender Label
@@ -71,7 +71,7 @@ sap.ui.jsview("backend.CustAppCreation", {
 	
 						type : sap.m.InputType.Text,
 						placeholder : 'Enter Gender...',
-						value: "{uiCustAppCreation>/custGender}"
+						value: "{/service/gender}"
 					}),
 	
 					// Barber Label
@@ -84,7 +84,7 @@ sap.ui.jsview("backend.CustAppCreation", {
 	
 						type : sap.m.InputType.Text,
 						placeholder : 'Enter Barber Name...',
-						value: "{uiCustAppCreation>/custBarber}"
+						
 					}),
 					
 					// Description Label
@@ -96,7 +96,7 @@ sap.ui.jsview("backend.CustAppCreation", {
 					//Description Input type : Text
 					new sap.m.TextArea("inputDesc", {
 						placeholder : 'Enter Desc...',
-						value: "{uiCustAppCreation>/custDesc}"
+						value: "{/service/description}"
 					}),
 					
 					// Date and Time Label
@@ -109,7 +109,7 @@ sap.ui.jsview("backend.CustAppCreation", {
 	
 						type : sap.m.DateTimeInputType.DateTime,
 						placeholder : 'Enter Date and Time...',
-						value: "{uiCustAppCreation>/custDateTime}"
+						dateValue : "{/start}"
 					}),
 					
 					// Confirm Button
