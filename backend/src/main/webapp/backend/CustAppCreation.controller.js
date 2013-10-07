@@ -103,7 +103,7 @@ sap.ui.controller("backend.CustAppCreation", {
 		oModel.setProperty("/end", this.model.getProperty("/start").getTime()+this.model.getProperty("/service/duration"));
 		
 			
-		
+		alert(this.model.getJSON());
 		//update web.xml and add Cusomter Service to the service classes	
 		
 		jQuery.ajax({
@@ -114,7 +114,6 @@ sap.ui.controller("backend.CustAppCreation", {
 			});
 			
 	}
-	
 	
 
 });
