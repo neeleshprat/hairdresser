@@ -22,6 +22,11 @@ sap.ui.jsview("backend.CustAppCreation", {
 		return new sap.m.Page({
 			title : "Create New Appointment",
 			enableScrolling : false,
+			showNavButton: true,
+			navButtonText: "Cancel",
+			navButtonPress: function(){ 
+		          app.back();            // when pressed, the back button should navigate back up to home page
+		      },
 			content : [ new sap.m.VBox({
 				justifyContent : sap.m.FlexJustifyContent.Center,
 				alignItems : sap.m.FlexAlignItems.Center,
@@ -30,8 +35,8 @@ sap.ui.jsview("backend.CustAppCreation", {
 					
 					new sap.m.Image({
 						src: "logo-start.png",
-						height: "100px",
-						width: "100px"
+						height: "150px",
+						width: "150px"
 					
 					}),
 					

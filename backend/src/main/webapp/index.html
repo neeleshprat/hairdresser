@@ -11,10 +11,24 @@
 		<!-- only load the mobile lib "sap.m" and the "sap_mvi" theme -->
 
 		<script>
-			sap.ui.localResources("backend");			
-			var app = new sap.m.App({initialPage:"idCustAppCreation"});
-			var page = sap.ui.view({id:"idCustAppCreation", viewName:"backend.CustAppCreation", type:sap.ui.core.mvc.ViewType.JS});
-			app.addPage(page);
+			sap.ui.localResources("backend");
+			
+			var app = new sap.m.App({initialPage:"idHomePage"});
+			
+			var pageHome = sap.ui.view({
+				id : "idHomePage",
+				viewName : "backend.HomePage",
+				type : sap.ui.core.mvc.ViewType.JS
+			});
+			
+			var pageCustAppCreation = sap.ui.view({
+				id:"idCustAppCreation", 
+				viewName:"backend.CustAppCreation", 
+				type:sap.ui.core.mvc.ViewType.JS
+			});
+			
+			app.addPage(pageHome);
+			app.addPage(pageCustAppCreation);
 			app.placeAt("content");
 		</script>
 

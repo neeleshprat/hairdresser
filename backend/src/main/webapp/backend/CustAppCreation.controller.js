@@ -11,7 +11,7 @@ sap.ui.controller("backend.CustAppCreation", {
 		this.model  = new sap.ui.model.json.JSONModel(
 				{
 					"customer" : {
-						"name" : "Neel"
+						"name" : ""
 					},
 					"service" : {
 						"title" : "Hair Cut",
@@ -58,14 +58,25 @@ sap.ui.controller("backend.CustAppCreation", {
 	// Saves the Appointment
 	onSubmit : function(oControlEvent){
 		
-//		this.model.setProperty("/start") = this.model.getProperty("/start").getTime();
-				
-		var dt = this.model.getProperty("/start").getTime();
+		if(this.model.getProperty("/start") && this.model.getProperty("/customer/name")) {	
+			
+			//Adds appointment details
+			this.addCustDetails();		
+			
+		} else {
+			jQuery.sap.require("sap.m.MessageToast");
+			sap.m.MessageToast.show("Please fill in all the details");			
+		}
 		
-		alert(dt);
+	},
+	
+	/**
+	 * Calls the POST method on the database in order to save the new entry
+	 * @param json JSON string containing the name and text elements
+	 */
+	addCustDetails : function(){
 		
-		//Model For the Unix time stamp
-		
+		//Temporary model For the Unix time stamp
 		var oModel  = new sap.ui.model.json.JSONModel(
 				{
 					"customer" : {
@@ -82,6 +93,7 @@ sap.ui.controller("backend.CustAppCreation", {
 					"end" : new Number()					
 				});
 		
+		//Assign Properties from this model to the temporary model
 		oModel.setProperty("/customer/name", this.model.getProperty("/customer/name"));
 		oModel.setProperty("/service/title", this.model.getProperty("/service/title"));
 		oModel.setProperty("/service/description", this.model.getProperty("/service/description"));
@@ -90,25 +102,17 @@ sap.ui.controller("backend.CustAppCreation", {
 		oModel.setProperty("/start", this.model.getProperty("/start").getTime());
 		oModel.setProperty("/end", this.model.getProperty("/start").getTime()+this.model.getProperty("/service/duration"));
 		
-		alert("fine");
-				
-		alert(oModel.getProperty("/start"));
-		alert(oModel.getProperty("/end"));
-		alert(oModel.getJSON());
+			
 		
+		//update web.xml and add Cusomter Service to the service classes	
 		
-		
-		//update web.xml and add Cusomter Service to the service classes
-		
-
 		jQuery.ajax({
 			url: "backend/customer/entries",
 			data: oModel.getJSON(),
 			type: "POST",
 			contentType: "application/json"
-			});	
-		
-		alert("submit done");
+			});
+			
 	}
 	
 	
